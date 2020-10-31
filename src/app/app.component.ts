@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { map } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+
 import { GiphyQuery } from './state/giphy.query';
 import { GiphyStore } from './state/giphy.store';
+import { SlideshowComponent } from './slideshow/slideshow.component';
+import { Gif } from './state/giphy.model';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +13,11 @@ import { GiphyStore } from './state/giphy.store';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private giphyStore: GiphyStore, private giphyQuery: GiphyQuery) {}
+  constructor(
+    private giphyStore: GiphyStore,
+    private giphyQuery: GiphyQuery,
+    private dialog: MatDialog
+  ) {}
 
   searchForm = new FormControl('');
 
@@ -22,5 +29,11 @@ export class AppComponent implements OnInit {
     this.searchForm.valueChanges.subscribe((value) =>
       this.giphyStore.setSearch(value)
     );
+  }
+
+  openSlideshow(gif: Gif) {
+    this.dialog.open(SlideshowComponent, {
+      data: gif,
+    });
   }
 }

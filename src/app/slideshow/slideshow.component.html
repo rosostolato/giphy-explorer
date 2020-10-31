@@ -1,1 +1,9 @@
-<p>slideshow works!</p>
+<div mat-dialog-content class="d-flex flex-column align-items-center">
+  <img [src]="gif.images.original.url" />
+  <span class="m-4">{{ gif.title }}</span>
+</div>
+
+<div mat-dialog-actions class="d-flex justify-content-between">
+  <button class="btn btn-light">Previous</button>
+  <button class="btn btn-light">Next</button>
+</div>

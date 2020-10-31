@@ -13,6 +13,7 @@
     <div
       class="d-flex align-items-center col-3 p-2"
       *ngFor="let gif of gifs$ | async"
+      (click)="openSlideshow(gif)"
     >
       <img
         *ngIf="gif.images.fixed_width_downsampled as image"
